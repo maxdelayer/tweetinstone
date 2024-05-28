@@ -23,7 +23,6 @@ classifiers = [
 	"Natural Language :: English",
 	"Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
 	"Topic :: Multimedia :: Video :: Conversion",
-	"Private :: Do Not Upload"
 ]
 
 [project.scripts] 
