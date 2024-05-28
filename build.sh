@@ -2,7 +2,7 @@
 # https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 # get in .venv first
-source /.venv/bin/activate
+source .venv/bin/activate
 
 # ensure build is installed
 python3 -m pip install --upgrade build
