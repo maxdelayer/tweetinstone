@@ -9,6 +9,7 @@ Toolset to automate screenshot archival of tweets in their most original/canonic
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Considerations](#considerations)
+- [Known issues](#known-issues)
 - [Credit](#credit)
 
 ### Design Intent
@@ -49,7 +50,20 @@ playwright install-deps
 
 ### Usage
 
-On installation via PIP, there are two commands: `tis` and `tis-gui`. Running `tis` will 
+On installation via PIP, there are two commands: `tis` and `tis-gui`. Running `tis` will run the command line version and `tis-gui` will default to a GUI for ease of use. The help page that displays when you run `tis` without any command line arguments will list what each argument does, but the simple version is this:
+
+1. Specify a search target (either an individual url or a file containing a list of urls)
+2. Run!
+
+The nuance is with the different search modes. If you don't specify a cookie file, tweetinstone can only see the single tweet you link, even if it is a reply or in a thread. If you specify a cookie file, tweetinstone will default to grabbing the tweet specified and any tweets preceding it, and concatenate them together. When you have cookies, you can also attemp the 'thread' search mode which will keep looking for tweets by the first user until they stop, but this is broken right now.
+
+##### Video Capture
+
+If a tweet has a single video, tweetinstone will download it and create a new video that composites the video inside of an image of the tweet using ffmpeg. Multi-video download is not supported right now since it's a huge pain in the ass.
+
+##### Image Capture
+
+Tweetinstone will attempt to download the highest quality version of any images attached to the tweet.
 
 #### Command Line Arguments
 
@@ -124,9 +138,11 @@ Paste this into a text file. Remove the other text until you just have the value
 
 ##### Chrome
 
-#### Simplified Auth Token Config (NOT FUNCTIONAL)
+TODO
 
-For simplicity's sake, since cookies are so key to extended functionality, by default, tweetinstone will look for a file named `auth.txt` in the current directory. If you save your cookie to this filename, you won't need to use `--cookie` option every time.
+#### ~~Simplified Auth Token Config (NOT FUNCTIONAL)~~
+
+~~For simplicity's sake, since cookies are so key to extended functionality, by default, tweetinstone will look for a file named `auth.txt` in the current directory. If you save your cookie to this filename, you won't need to use `--cookie` option every time.~~
 
 ##### Note:
 
@@ -139,8 +155,15 @@ Changes twitter makes that cause upstream issues in `youtube-dl` may require upd
 
 Lastly, any use of tweetinstone carries no obligation of support, regardless of how timely or untimely. This is something I built in my free time because I wanted it to exist so I could use it myself, but that I am allowing the public to use for free. However, if you play nice I do appreciate reports of problems (preferably via github issues) because I have no chance of fixing problems I cannot see.
 
+### Known Issues
+
+In the interest of getting a working build out there and actually semi-finishing a project, tweetinstone has released in an imperfect state. Here is a list of known issues:
+ - Thread traversal is broken and won't grab the entire thread
+ - Video capture is broken after the latest twitter domain changes on older yt-dlp versions
+ - Default cookie support has not been added
+
 ### Credit
-(@atomicthumbs for the idea)[https://twitter.com/atomicthumbs/status/1649952816268742656]
-Playwright for making programmatically interacting with web browsers easy
-ffmpeg for being awesome and the person who made an awesome python wrapper for it
-Various helpful posts I've given kudos to in the code where appropriate
+ - [@atomicthumbs for the idea](https://twitter.com/atomicthumbs/status/1649952816268742656)
+ - Playwright for making programmatically interacting with web browsers easy
+ - ffmpeg for being awesome (plus the person who made an awesome python wrapper for it)
+ - Various helpful posts I've given kudos to in the code where appropriate
