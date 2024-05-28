@@ -8,9 +8,9 @@ from PySide6.QtCore import Qt, Signal, Slot, QThreadPool, QMimeData
 from PIL import Image
 
 ## Import TIS-specific functions
-from tis.search import read_input, run_playwright
-from tis.file_ops import check_progress_file
-from tis.gui.worker import Worker, WorkerSignals
+from tweetinstone.search import read_input, run_playwright
+from tweetinstone.file_ops import check_progress_file
+from tweetinstone.gui.worker import Worker, WorkerSignals
 
 ### Custom dialog for the search
 # This runs the worker that does the same async function the CLI version uses

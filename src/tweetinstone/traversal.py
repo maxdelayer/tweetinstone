@@ -6,9 +6,9 @@ from copy import copy # Used for managing the json of arguments in a sane way
 from playwright.async_api import Page, Locator, expect, TimeoutError as PlaywrightTimeoutError
 
 ## Import TIS-specific functions
-from tis.capture import capture, killshot
-from tis.text_ops import validURL
-from tis.media_ops import concatenate
+from tweetinstone.capture import capture, killshot
+from tweetinstone.text_ops import validURL
+from tweetinstone.media_ops import concatenate
 
 # TODO RELEASE CRIT: when at end of the original list, instead of cutting off, stay on that tweet, and restart loop with the new list of tweets, ignoring already captured
 ### detect(): decide what parts of the page to capture()

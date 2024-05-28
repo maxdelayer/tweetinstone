@@ -3,7 +3,7 @@ requires = ["hatchling", "hatch-requirements-txt"]
 build-backend = "hatchling.build"
 
 [project]
-name = "tis"
+name = "tweetinstone"
 dynamic = ["version", "dependencies"]
 authors = [
   { name="Max", email="tweetinstone@protonmail.com" }
@@ -26,10 +26,10 @@ classifiers = [
 ]
 
 [project.scripts] 
-tis = "tis.main:main_cli"
+tis = "tweetinstone.main:main_cli"
 
 [project.gui-scripts]
-tis-gui = "tis.main:main_gui"
+tis-gui = "tweetinstone.main:main_gui"
 
 [project.urls]
 Homepage = "https://tweetinstone.com"
@@ -39,7 +39,7 @@ Issues = "https://github.com/maxdelayer/tweetinstone/issues"
 "Tip Jar" = "https://paypal.me/tweetinstone"
 
 [tool.hatch.version]
-path = "src/tis/version.py"
+path = "src/tweetinstone/version.py"
 
 [tool.hatch.metadata.hooks.requirements_txt]
 files = ["requirements.txt"]

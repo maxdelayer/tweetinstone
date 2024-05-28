@@ -14,8 +14,8 @@ python3 -m pip install --upgrade build
 python3 -m build
 
 # install generated wheel?
-pip3 uninstall -y tis
-pip3 install dist/tis-*.whl
+pip3 uninstall -y tweetinstone
+pip3 install dist/tweetinstone-*.whl
 
 # Leave venv?
 #deactivate

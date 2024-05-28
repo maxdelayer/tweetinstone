@@ -2,7 +2,7 @@
 # Used to add some hierarchy to avoid some import conflicts
 
 import asyncio
-from .initialize import initialize
+from tweetinstone.initialize import initialize
 
 def main_cli():
 	# Cross your fingers and run!

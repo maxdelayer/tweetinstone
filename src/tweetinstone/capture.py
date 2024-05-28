@@ -1,9 +1,9 @@
 ### File to handle capture functions
 
 ## Import TIS-specific functions
-from tis.version import __version__
-from tis.media_ops import takeVideoBytes
-from tis.file_ops import saveTxt, saveImage, saveZip, saveZipFile
+from tweetinstone.version import __version__
+from tweetinstone.media_ops import takeVideoBytes
+from tweetinstone.file_ops import saveTxt, saveImage, saveZip, saveZipFile
 
 ## Import from libraries
 import json # For json.dumps

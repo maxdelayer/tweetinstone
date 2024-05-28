@@ -10,12 +10,12 @@ from PySide6.QtGui import (QGuiApplication, QKeySequence, QIcon)
 from PySide6.QtCore import QDir, QStandardPaths, Qt, Signal, Slot, QThreadPool
 
 # Import TIS-specific functions
-from tis.version import __version__
-from tis.search import parser_setup
-from tis.file_ops import gen_cookie
-from tis.text_ops import validURL
-from tis.gui.search_window import TweetDialog
-from tis.gui.stylesheet import stylesheet
+from tweetinstone.version import __version__
+from tweetinstone.search import parser_setup
+from tweetinstone.file_ops import gen_cookie
+from tweetinstone.text_ops import validURL
+from tweetinstone.gui.search_window import TweetDialog
+from tweetinstone.gui.stylesheet import stylesheet
 
 # TODO FUTURE FEATURE: add json viewer like https://doc.qt.io/qtforpython-6/examples/example_widgets_itemviews_jsonmodel.html ?
 # TODO FUTURE FEATURE: Checkboxes: STRETCH GOAL. have yes/no if it got correct capture then error message that I can get in issues, then after it's done, it keeps settings and stays open

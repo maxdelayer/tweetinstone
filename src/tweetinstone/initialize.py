@@ -6,11 +6,11 @@ import logging
 from sys import exit # I only need exit from sys
 from PySide6.QtWidgets import QApplication # Used because the GUI setup happens here regardless
 
-# Import TIS-specific functions
-from tis.file_ops import gen_cookie
-from tis.search import parser_setup, read_input, run_playwright
-from tis.gui.main_window import tis_main_window, stylesheet
-from tis.gui.worker import WorkerSignals
+# Import tweetinstone-specific functions
+from tweetinstone.file_ops import gen_cookie
+from tweetinstone.search import parser_setup, read_input, run_playwright
+from tweetinstone.gui.main_window import tis_main_window, stylesheet
+from tweetinstone.gui.worker import WorkerSignals
 
 ### initialize(): AKA a synonym for main() since I needed to make some nested mains
 # Gets args, then based off of that does the real shit

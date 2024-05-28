@@ -28,7 +28,7 @@ If you are someone who likes to have local copies of tweets for whatever reason,
 
 To maximize ease of use, I've published this to PyPI. You can install tweetinstone with
 ```bash
-pip3 install tis
+pip3 install tweetinstone
 ```
 
 #### Manually
