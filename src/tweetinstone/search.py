@@ -17,17 +17,17 @@ from PySide6.QtCore import Signal
 from playwright.async_api import async_playwright, Error as PlaywrightError
 
 # Import stuff from TIS files
-from tis.version import __version__
-from tis.text_ops import validURL, commentFilter
-from tis.file_ops import saveZip, saveTxt
-from tis.traversal import detect
+from tweetinstone.version import __version__
+from tweetinstone.text_ops import validURL, commentFilter
+from tweetinstone.file_ops import saveZip, saveTxt
+from tweetinstone.traversal import detect
 
 ### args_setup():
 # Create and return arg parser
 def parser_setup() -> argparse.ArgumentParser:
 	### Manage command line arguments and help menu ###
 	# Some of these are commented out - they're features that don't exist yet, but theoretically might someday
-	parser = argparse.ArgumentParser(prog='tis.py', usage='%(prog)s [options] [url]', description="Automatically save screenshots and metadata of tweets", epilog="Good luck and happy archiving, -M")
+	parser = argparse.ArgumentParser(prog='tis', usage='%(prog)s [options] [url]', description="Automatically save screenshots and metadata of tweets", epilog="Good luck and happy archiving, -M")
 	
 	# TODO POLISH: reconsider making input and urls mutually exclusive
 	inputgroup = parser.add_argument_group(title='input options', description='either input an arbitrary number of urls or a file containing urls to search')

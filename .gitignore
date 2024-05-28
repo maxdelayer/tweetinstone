@@ -13,4 +13,4 @@ failed_capture_*.txt
 *.txt
 *.sh
 archive_*/
-*/
+.*/
