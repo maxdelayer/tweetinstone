@@ -1,0 +1,14 @@
+dist/
+__pycache__/
+.venv/
+.saved/
+.trash/
+*.png
+*.mp4
+*.zip
+*.jxl
+*cookie*.txt
+*auth*.txt
+failed_capture_*.txt
+*.txt
+*.sh
