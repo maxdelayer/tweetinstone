@@ -144,7 +144,7 @@ You can export cookies with browser extensions such as those recommended by [oth
 
 In firefox, open the dev tools with `f12` and then click the [storage](https://firefox-source-docs.mozilla.org/devtools-user/storage_inspector/index.html) tab. Click on the cookie with the name 'auth_token'. A window will pop up on the right that has the cookie's data. Right click where it says 'auth_token' and select 'copy'. 
 
-~~##### Chrome~~
+##### ~~Chrome~~
 
 ~~TODO~~
 
@@ -158,7 +158,7 @@ Now that you have the `auth_token` value in your clipboard, you can create your 
 
 ~~For simplicity's sake, since cookies are so key to extended functionality, by default, tweetinstone will look for a file named `auth.txt` in the current directory. If you save your cookie to this filename, you won't need to use `--cookie` option every time.~~
 
-~~##### Note:~~
+##### ~~Note:~~
 
 ~~Default cookie file usage can be disabled with the `-n` option~~
 
