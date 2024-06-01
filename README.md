@@ -24,14 +24,20 @@ If you are someone who likes to have local copies of tweets for whatever reason,
 
 ### Installation
 
-#### Via PIP
+You can install a pre-built version with PIP or build it manually on your local system.
 
-To maximize ease of use, I've published this to PyPI. You can install tweetinstone with
+This tool was built and tested entirely on Ubuntu running via WSL2. On Windows 10 the GUI had some issues (the window didn't generate a title bar to control from) however on Windows 11 WSL the title bars work fine. I doubt you'll have problems like that if you're running linux natively. I have not attempted to install this with Python on Windows because that would probably break and suck and I don't think anyone should try running python on Windows when this is the 2020s and WSL exists and lets you do it seamlessly in linux with a better user experience.
+
+If you are in the worst case compatibility scenario, or if you're as rightfully cautious about installing software from a stranger online as you probably should be, you could always just run this in a linux VM if you really wanted to. Or if you're extra spooked, run this on a cloud server. While I do think that running the GUI on your desktop environment offers the best user experience because it can actually show you the output in real time (which is great for catching errors or copying the image to your clipboard) I encourage you to run software safely and responsibly!
+
+#### Install Via PIP (Recommended)
+
+To maximize ease of use and the rollout of updates, I've published this to PyPI. You can install tweetinstone with
 ```bash
 pip3 install tweetinstone
 ```
 
-#### Manually
+#### Install Manually (Tinkerers Only)
 
 This tool was built and tested on WSL, but given it's python it should be highly portable. Presuming you have a working python and pip installation, it should be as simple as installing the requirement packages, setting up Playwright and running the script from the command line.
 
@@ -57,6 +63,10 @@ On installation via PIP, there are two commands: `tis` and `tis-gui`. Running `t
 
 The nuance is with the different search modes. If you don't specify a cookie file, tweetinstone can only see the single tweet you link, even if it is a reply or in a thread. If you specify a cookie file, tweetinstone will default to grabbing the tweet specified and any tweets preceding it, and concatenate them together. When you have cookies, you can also attemp the 'thread' search mode which will keep looking for tweets by the first user until they stop, but this is broken right now.
 
+An important note is that ***sometimes*, software is unreliable** and both tweetinstone and twitter could fuck up and not save the right thing that you wanted. If you want to be sure it archived the tweet properly, DOUBLE CHECK THE SAVED FILES. Some tweets may break or not save perfectly. In those edge cases, you may want to screenshot the tweet manually yourself if tweetinstone isnt getting the output you want. If you run into such edge cases, feel free to bring them up in Github Issues and (no promises) perhaps I will see it and use it as a test case to improve a future version of tweetinstone.
+
+Sometimes though, just trying the search again can fix it. Often times there are some problems with grabbing large batches, potentially due to rate limiting or just plain old probability.
+
 ##### Video Capture
 
 If a tweet has a single video, tweetinstone will download it and create a new video that composites the video inside of an image of the tweet using ffmpeg. Multi-video download is not supported right now since it's a huge pain in the ass.
@@ -72,9 +82,9 @@ Tweetinstone will attempt to download the highest quality version of any images 
 | Argument | Shorthand | Effect | Example |
 | :---: | :---: | :--- | :--- |
 | --help | -h | Display help menu |  |
-| --verbose | -v | Displays extra ffmpeg information |  |
-| --cookies | -c | Input a cookie file | `./tis.py -c ./cookie.txt https://twitter.com/` |
-| --no-cookies | -n | Disregard default cookie file | |
+| --verbose | -v | Displays extra debug information |  |
+| --cookies | -c | Input a cookie file | `tis -c ./cookie.txt https://twitter.com/` |
+| ~~--no-cookies~~ | ~~-n~~ | ~~Disregard default cookie file~~ | |
 | --version |  | Display version number |  |
 
 ##### Input Options
@@ -83,8 +93,8 @@ There are two modes of input: urls as command line arguments, and urls inside of
 
 | Input method | Argument | Shorthand | Input | Example |
 | :---: | :---: | :---: | :--- | :--- |
-| URL | \[url\] |  | a single URL or multiple, space-separated urls | `./tis.py https://twitter.com/atomicthumbs/status/1649952816268742656` |
-| Text file | --input | -i | A text file containing line-separate tweet urls | `./tis.py -i tweets.txt` |
+| URL | \[url\] |  | a single URL or multiple, space-separated urls | `tis https://twitter.com/atomicthumbs/status/1649952816268742656` |
+| Text file | --input | -i | A text file containing line-separate tweet urls. See [demo.txt](tests/demo.txt) for an example | `tis -i tweets.txt` |
 
 ##### Scope Options
 
