@@ -144,19 +144,23 @@ You can export cookies with browser extensions such as those recommended by [oth
 
 In firefox, open the dev tools with `f12` and then click the [storage](https://firefox-source-docs.mozilla.org/devtools-user/storage_inspector/index.html) tab. Click on the cookie with the name 'auth_token'. A window will pop up on the right that has the cookie's data. Right click where it says 'auth_token' and select 'copy'. 
 
-Paste this into a text file. Remove the other text until you just have the value in between the parenthesis. If the file just contains the auth token string, you're good to go!
+~~##### Chrome~~
 
-##### Chrome
+~~TODO~~
 
-TODO
+#### Create cookie file 
+
+Now that you have the `auth_token` value in your clipboard, you can create your cookie file in two ways:
+1. (CLI Method) Run `tis --generate cookie.txt` (or whatever filename you want). When it prompts you for your auth_token value, paste it.
+2. (GUI Method) Run `tis-gui`. In the "Cookies" submenu click "Generate Cookies" and follow the instructions to paste the value and save to a file.
 
 #### ~~Simplified Auth Token Config (NOT FUNCTIONAL)~~
 
 ~~For simplicity's sake, since cookies are so key to extended functionality, by default, tweetinstone will look for a file named `auth.txt` in the current directory. If you save your cookie to this filename, you won't need to use `--cookie` option every time.~~
 
-##### Note:
+~~##### Note:~~
 
-Default cookie file usage can be disabled with the `-n` option
+~~Default cookie file usage can be disabled with the `-n` option~~
 
 ### Considerations
 Twitter's behavior has been a bit wonky as of the time of writing. Some changes in Summer 2023 have been problamatic. Because of new policies where only logged in users can see replies to tweets, if you do not have an `auth_token` cookie for tweetinstone to log yourself in, tweetinstone will only be able to grab the single tweet in the url, and may have limited functionality or unexpected behavior.
