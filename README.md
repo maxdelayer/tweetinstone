@@ -16,7 +16,7 @@ Toolset to automate screenshot archival of tweets in their most original/canonic
 
 The goal of this project is to take screenshots and additional metadata from tweets in an automated fashion. This is pretty typical behavior if you want to reference a tweet in some other medium where you can't simply embed (such as editing a video) or where embedding a link is insufficient for full context (such as posting on discord). It is also important for archiving a tweet in case it is deleted, the user is banned/deleted/goes private, or twitter explodes/has an outage which would essentially lose that tweet to time like tears in the rain.
 
-The internet is (for better and worse) ephemeral, so I want to empower those who have tweets that they enjoy to be able to save them. Not just save them as data or a rough screeNshot, but in high resolution as they would be seen (more or less) at the time of reference, with all associated images and video that the tweet contains in its highest possible quality. 
+The internet is (for better and worse) ephemeral, so I want to empower those who have tweets that they enjoy to be able to save them. Not just save them as data or a rough screenshot, but in high resolution as they would be seen (more or less) at the time of reference, with all associated images and video that the tweet contains in its highest possible quality. 
 
 If you are someone who likes to have local copies of tweets for whatever reason, I hope that this tool lets the computer do the work instead of you, giving you more time to do real human things. That's the reason this exists.
 
