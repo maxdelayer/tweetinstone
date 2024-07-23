@@ -207,6 +207,7 @@ async def capture_images(zip: ZipFile, tweet: Locator, tweetInfo, directory):
 	for image in images:
 		# Increment iterator that's used for file name strings
 		imageiterator += 1
+		log.debug("Attempting capture of image #" + str(imageiterator))
 		
 		# Make sure this image isn't just a video thumbnail
 		try:
@@ -216,8 +217,19 @@ async def capture_images(zip: ZipFile, tweet: Locator, tweetInfo, directory):
 			# There is a video player in this tweetPhoto, so exit
 			continue
 		
+		log.debug("Image: " + str(image))
+		log.debug("Image HTML: " + await image.inner_html())
+		
 		# We'll have to clean up the url, but this will give us what we need
-		imageUrl = await image.get_by_role("img").get_attribute("src")
+		#imageUrl = await image.get_by_role("img").get_attribute("src")
+		imageHtml = image.get_by_role("img").first
+		log.debug("Image Role html: " + await imageHtml.inner_html())
+		
+		# TODO RELEASE?
+		# Assertion to ensure that the image has the img attribute. Reference: https://playwright.dev/python/docs/api/class-locatorassertions#locator-assertions-to-have-attribute
+		#await expect(imageHtml).to_have_attribute("src") # TODO NEEDS VALUE?
+		
+		imageUrl = await imageHtml.get_attribute("src")
 		
 		# Get the name and the format of the image from that thumbnail link
 		imageName   = imageUrl.split('/')[4].split('?')[0]
@@ -306,14 +318,14 @@ async def capture_video(args, zip: ZipFile, tweet: Locator, directory: str, name
 	
 	videoBytes = download[1]
 	
-	# TODO FUTURE OPTION
-	# Error out if the video is too large for the current settings (also: this is a yt-dlp option)
-	vidsize = getsizeof(videoBytes)
-	print("Vid size = " + str(vidsize))
-	
 	# TODO FUTURE FEATURE: move this over to multi-video capture?
 	# Save the original video to zip
-	videoBytes.seek(0)
+	try:
+		videoBytes.seek(0)
+	except ValueError:
+		log.error("ValueError: I/O operation on closed file") # I've gotten this when a video download didn't work properly and it showed up as 
+		sys.exit(1) #TODO: proper error handling
+	
 	saveZip(zip, directory + "video_" + name + ".mp4", videoBytes.read())
 	
 	# Save the video to a temporary file that FFMPEG can easily see because getting ffmpeg-python to take two separate inputs through stdin would cost me sanity points that I cannot afford to lose
@@ -588,7 +600,7 @@ async def capture(search: dict, tweet: Locator, handle: str, id: str, progress_c
 					break
 				
 				# Translate tweets
-				# Translations only work when you have cookies
+				# Limitation: Translations only work when you have cookies
 				#if hasattr(search['args'], 'cookie'):
 				if search['args'].cookies:
 					if buttontext == "Translate post":
@@ -791,14 +803,17 @@ async def capture(search: dict, tweet: Locator, handle: str, id: str, progress_c
 		log.debug("Tweet capture complete for '" + name + "'")
 		
 		return output
-	except PlaywrightTimeoutError:
-		print("ERROR: Timeout during capture of '" + handle + "/status/" + id + "'")
+	except PlaywrightTimeoutError as error:
+		log.error("Timeout during capture of '" + handle + "/status/" + id + "'")
 		await killshot(search, tweet.page)
 		
 		output = {}
 		output['successful'] = False
 		
-		# TODO RELEASE: consider?
-		raise
+		log.error(error.name + ": " + error.message)
+		log.error("Error stack:" + error.stack)
+		
+		# TODO RELEASE: raise error fully when in debug mode?
+		#raise
 		
 		return output

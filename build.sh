@@ -1,14 +1,17 @@
 # Everything from this tutorial
 # https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
+#sudo apt install python3.10-venv
+#python3 -m pip install --upgrade twine
+
 # get in .venv first
 source .venv/bin/activate
 
 # ensure build is installed
 python3 -m pip install --upgrade build
-#sudo apt install python3.10-venv
-# twine is used for uploading
-#python3 -m pip install --upgrade twine
+
+# Remove old builds
+rm dist/tweetinstone-*.whl
 
 # build
 python3 -m build

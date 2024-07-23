@@ -4,11 +4,13 @@
 import logging
 from copy import copy # Used for managing the json of arguments in a sane way
 from playwright.async_api import Page, Locator, expect, TimeoutError as PlaywrightTimeoutError
+from io import BytesIO
 
 ## Import TIS-specific functions
-from tweetinstone.capture import capture, killshot
+from tweetinstone.capture import capture, deleted_capture, killshot
 from tweetinstone.text_ops import validURL
 from tweetinstone.media_ops import concatenate
+from tweetinstone.file_ops import saveZip
 
 # TODO RELEASE CRIT: when at end of the original list, instead of cutting off, stay on that tweet, and restart loop with the new list of tweets, ignoring already captured
 ### detect(): decide what parts of the page to capture()
@@ -165,7 +167,7 @@ async def detect(search: dict, page: Page, progress_callback):
 					# Click on the next tweet, being careful to not accidentally click on an image
 					await tweet.click(position={'x': 1,'y': 1})
 					try:
-						await page.wait_for_url('https://twitter.com/' + handle + '/status/' + tweetid, wait_until="load")
+						await page.wait_for_url('https://x.com/' + handle + '/status/' + tweetid, wait_until="load")
 					except PlaywrightTimeoutError:
 						log.error("Timeout occured when finding elements of tweet '" + search['target'] + "'")
 						search['num_tweets'] = 0
@@ -306,7 +308,7 @@ async def detect(search: dict, page: Page, progress_callback):
 				# Click on the next tweet, being careful to not accidentally click on an image
 				await tweet.click(position={'x': 1,'y': 1})
 				try:
-					await page.wait_for_url('https://twitter.com/' + handle + '/status/' + tweetid, wait_until="load")
+					await page.wait_for_url('https://x.com/' + handle + '/status/' + tweetid, wait_until="load")
 				except PlaywrightTimeoutError:
 					log.error("Timeout occured when finding elements of tweet '" + search['target'] + "'")
 					search['num_tweets'] = 0

@@ -8,6 +8,8 @@ from io import BytesIO, StringIO # Used for storing stuff in memory instead of t
 from contextlib import redirect_stdout, redirect_stderr # Used for wacky bullshit
 from yt_dlp import YoutubeDL, DownloadError # yt-dlp used for youtube video download. Reference: https://github.com/yt-dlp/yt-dlp#embedding-yt-dlp
 
+from sys import getsizeof
+
 ### concatenate(): Combine two images vertically
 # Used for making threads into one big image by concatenating to the same Image object during recursion
 # The 'bottom' image is raw bytes which get added below the 'origin' PIL Image object's image
@@ -96,7 +98,20 @@ async def takeVideoBytes(cookiefile, url: str) -> (int, BytesIO):
 		log.error("Search failed due to yt-dlp error")
 		log.error("yt-dlp error message: '" + DLError.msg + "'")
 		status = 1
-		
+	
+	# Sometimes, for mysterious reasons, the video is empty without there being a ytdl error
+	# This will mean the bytesio object will be 'empty' (80 bytes, with value of "b''")
+	# If this happens, report that the download failed
+	vidsize = getsizeof(video)
+	log.debug("Video size: " + str(vidsize) + " bytes")
+	if status == 0 and vidsize == 80:
+		if str(video.getvalue()) == "b''":
+			log.error("The downloaded video was a failure for unknown reasons (returned empty)")
+			status = 1
+	
+	# TODO FUTURE OPTION
+	# Error out if the video is too large for the current settings (also: this is a yt-dlp option)
+	
 	# Return the BytesIO buffer of the video
 	return (status, video)
 

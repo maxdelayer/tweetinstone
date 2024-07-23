@@ -70,7 +70,7 @@ def parser_setup() -> argparse.ArgumentParser:
 	
 	# Not strictly required, but recommended
 	parser.add_argument('-c','--cookies', metavar='[file.txt]', type=argparse.FileType('r'), help="A file containing the session token for a user found in browser cookies", required=False, action='store')
-	parser.add_argument('--generate', metavar='[file.txt]',type=pathlib.Path, help="Prompts for the auth_token string and create cookiefile from it at the specified file name", required=False, action='store')
+	parser.add_argument('--generate', metavar='[file.txt]',type=pathlib.Path, help="Prompts for the auth_token string and creates a cookie file from it at the specified file name", required=False, action='store')
 	# TODO FUTURE POLISH: implement default cookie usage when a cookie.txt file is present
 	#parser.add_argument('-n','--no-cookies', help="Don't use the default 'cookie.txt' file", required=False, action='store_true')
 
@@ -112,7 +112,7 @@ def parse_cookies(args) -> list:
 	log = logging.getLogger(__name__)
 	cookies = []
 	
-	print("Reading cookies from '" + args.cookies.name + "'")
+	log.info("Reading cookies from '" + args.cookies.name + "'")
 	
 	# Check each line in the cookie file
 	lines = args.cookies.readlines()

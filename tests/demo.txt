@@ -1,7 +1,9 @@
 # Demo tweets for tweetinstone
 
-https://twitter.com/atomicthumbs/status/1649952816268742656
-https://twitter.com/nathanfielder/status/620060895209779200
-https://twitter.com/MetalGear_OOC/status/1377063096548724736?s=20
-https://x.com/i7_macintosh/status/1672764538322575361?s=20
-https://x.com/SwiftOnSecurity/status/1074818136971636744?s=20
+https://twitter.com/atomicthumbs/status/1649952816268742656 # Standard tweet, no attached media or replies
+https://x.com/HIDEO_KOJIMA_EN/status/1799371464862499303 # Emoji
+https://twitter.com/nathanfielder/status/620060895209779200 # Tweet with one photo
+https://x.com/i7_macintosh/status/1672764538322575361?s=20 # Tweet replying to a tweet
+https://twitter.com/MetalGear_OOC/status/1377063096548724736?s=20 # Tweet with video
+https://twitter.com/BNBaku2/status/1793433054054412567 # Tweet with video
+https://x.com/SwiftOnSecurity/status/1074818136971636744?s=20 # huge thread (broken)
